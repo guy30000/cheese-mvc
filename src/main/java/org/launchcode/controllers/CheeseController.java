@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class CheeseController {
 
     static ArrayList<String> cheeses = new ArrayList<>();
+    static ArrayList<String> cheese_Discription = new ArrayList<>();
+
 
     // Request path: cheese/
     @RequestMapping(value = "")
