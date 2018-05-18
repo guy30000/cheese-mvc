@@ -23,12 +23,14 @@
         </li>
         </ul>
         -->
-
+    <form method="post">
         <ul th:each="cheese_n_description : ${cheese_n_description}">
-            <td th:text="${cheese_n_description.key}">Key</td> -
-            <td th:text="${cheese_n_description.value}">Value</td>
-        </ul>
+            <td th:text="${cheese_n_description.key} + ' - ' + ${cheese_n_description.value}"></td>    <!-- + ' - ' +  ##This should join them -->
 
+
+            <!-- <td th:text="${cheese_n_description.value}">Value</td> -->
+        </ul>
+    </form>
 
 
 </body>

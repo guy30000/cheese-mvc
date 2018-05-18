@@ -29,11 +29,9 @@ public class CheeseController {
 
         // ArrayList<String> cheeses = new ArrayList<>(); This moved above adding "static" proceding it
 
-
-
-        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("cheeses", cheeses);  //nolonger dbeing used, as the line below
         model.addAttribute("cheese_Discription", cheese_Discription); //added this line to get desctiptions
-        model.addAttribute("cheese_n_description", cheese_n_description);
+        model.addAttribute("cheese_n_description", cheese_n_description); //initilizes hashmap
         model.addAttribute("title", "My Cheeses");  //this passes info into the index template
         return "cheese/index";
     }
@@ -50,23 +48,34 @@ public class CheeseController {
     /*  Alt way to do line above
     public String proceessAddCheeseform(HttpServletRequest request) {
         String cheeseName = request.getParameter("cheeseName"); */
-        cheese_n_description.put(cheeseName, cheese_disc);
-        cheeses.add(cheeseName);
+        cheese_n_description.put(cheeseName, cheese_disc); //addes to the hash
+        cheeses.add(cheeseName);  ///nolonger being used as lineb below
         cheese_Discription.add(cheese_disc);   //added this line to get desctiptions
+        System.out.println(cheese_n_description);
         //redirectes to cheese handler
         return "redirect:";
 
     }
 
-    //Studio, adding crossoff
-    /*
-    @RequestMapping(value = "crossoff", method = RequestMethod.GET)
-    public String displayCrossoffCheeseForm(Model model) {
-        model.addAttribute("title", "Add Cheese");
-        return "cheese/crossoff";
+    //Request path: cheese/remove
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String showRemoveForm(Model model) {
+        model.addAttribute("title", "Remove Cheese");
+        model.addAttribute("cheeses", cheeses);
+
+        return "cheese/remove";
 
     }
-    */
 
+    //Request path: cheese/remove
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveForm(@RequestParam ArrayList<String> cheese) {
+
+        for(String c : cheese) {
+            cheeses.remove(c);
+        }
+
+        return "redirect:";
+    }
 
 }
