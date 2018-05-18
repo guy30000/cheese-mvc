@@ -61,7 +61,7 @@ public class CheeseController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String showRemoveForm(Model model) {
         model.addAttribute("title", "Remove Cheese");
-        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("cheese_n_description", cheese_n_description);
 
         return "cheese/remove";
 
@@ -72,7 +72,7 @@ public class CheeseController {
     public String processRemoveForm(@RequestParam ArrayList<String> cheese) {
 
         for(String c : cheese) {
-            cheeses.remove(c);
+            cheese_n_description.remove(c);
         }
 
         return "redirect:";
